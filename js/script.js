@@ -54,30 +54,38 @@ let autoPlay = setInterval(()=>{
     items[activeItemIndex].classList.remove("active");
     if (activeItemIndex < items.length - 1) {
         // incremeto active index
-        activeItemIndex++;
-       
+        activeItemIndex++;  
     } else {
         activeItemIndex = 0;
     }
-
     //Aggiungo classe active all'elemento successivo
     items[activeItemIndex].classList.add("active");
 },3000)
 
 document.querySelector(".slider-items").addEventListener("mouseover", mouseOver);
-
 document.querySelector(".slider-items").addEventListener("mouseout", mouseOut);
-
-
 function mouseOver() {
     clearInterval(autoPlay);    
 }
 
-function mouseOut() {
-    autoPlay;    
+function mouseOut () {
+    replay(); 
 }
 
-
+function replay () {
+    let autoPlay = setInterval(()=>{
+        items[activeItemIndex].classList.remove("active");
+        if (activeItemIndex < items.length - 1) {
+            // incremeto active index
+            activeItemIndex++;  
+        } else {
+            activeItemIndex = 0;
+        }
+        //Aggiungo classe active all'elemento successivo
+        items[activeItemIndex].classList.add("active");
+    },3000)
+    return autoPlay;
+}
 //bottone prev
 const prevBtn = document.querySelector(".prev");
 prevBtn.addEventListener ("click", function() {
@@ -89,7 +97,6 @@ prevBtn.addEventListener ("click", function() {
          // diminuisco active index
          activeItemIndex--;
     }
-
     //Aggiungo classe active all'elemento successivo
     items[activeItemIndex].classList.add("active"); 
 });

@@ -50,7 +50,7 @@ nextBtn.addEventListener ("click", function() {
 
 // Al carousel ho aggiunto la funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva cambia e viene mostrata la successiva.
 
-setInterval(()=>{
+let autoPlay = setInterval(()=>{
     items[activeItemIndex].classList.remove("active");
     if (activeItemIndex < items.length - 1) {
         // incremeto active index
@@ -62,9 +62,20 @@ setInterval(()=>{
 
     //Aggiungo classe active all'elemento successivo
     items[activeItemIndex].classList.add("active");
-    
-    
 },3000)
+
+document.querySelector(".slider-items").addEventListener("mouseover", mouseOver);
+
+document.querySelector(".slider-items").addEventListener("mouseout", mouseOut);
+
+
+function mouseOver() {
+    clearInterval(autoPlay);    
+}
+
+function mouseOut() {
+    autoPlay;    
+}
 
 
 //bottone prev
@@ -79,8 +90,8 @@ prevBtn.addEventListener ("click", function() {
          activeItemIndex--;
     }
 
-     //Aggiungo classe active all'elemento successivo
-     items[activeItemIndex].classList.add("active"); 
+    //Aggiungo classe active all'elemento successivo
+    items[activeItemIndex].classList.add("active"); 
 });
 
 
